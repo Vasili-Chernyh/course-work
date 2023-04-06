@@ -1,44 +1,42 @@
 package coursework;
 
-import java.util.Arrays;
-
 public class StaffBook {
     public static int keyCounter = 1;
     public static void getAllData (String data){
         System.out.println(data);
     }
-    public static int salarySum (int[] salary){
+    public static int salarySum(Employee[] employees){
         int sum = 0;
-        for (int j : salary) {
-            sum = sum + j;
+        for (Employee employee : employees) {
+            sum = sum + employee.getSalary();
         }
         return sum;
     }
-    public static int maxSalary (int[] salary){
+    public static int maxSalary (Employee[] employees){
         int max = 0;
-        for (int i = 0; i < salary.length; i++) {
-            if (max < salary[i]){
-                max = salary[i];
+        for (Employee employee : employees) {
+            if (max < employee.getSalary()){
+                max = employee.getSalary();
             }
         }
         return max;
     }
-    public static int minSalary (int[] salary){
-        int min = salary[0];
-        for (int i = 0; i < salary.length; i++) {
-            if(min > salary[i]){
-                min = salary[i];
+    public static int minSalary (Employee[] employees){
+        int min = employees[0].getSalary();
+        for (Employee employee : employees) {
+            if(min > employee.getSalary()){
+                min = employee.getSalary();
             }
         }
         return min;
     }
-    public static int averageSalary(int[] salary) {
+    public static int averageSalary (Employee[] employees){
         int sum = 0;
-        for (int j : salary) {
-            sum = sum + j;
+        for (Employee employee : employees) {
+            sum = sum + employee.getSalary();
         }
-        int average = 0;
-        average = sum / salary.length;
+        int average;
+        average = sum / employees.length;
         return average;
     }
     public static void listOfEmployee (String data) {
@@ -60,21 +58,17 @@ public class StaffBook {
         for (Employee item : newEmployee) {
             getAllData(item + "");
         }
-        int[] arr  = new int[newEmployee.length];
-        for (int i = 0; i < newEmployee.length; i++) {
-            arr [i] = newEmployee[i].getSalary();
-        }
 
-        int sum = salarySum(arr);
+        int sum = salarySum(newEmployee);
         System.out.println("Сумма затрат на зарплаты в месяц: " + sum);
 
-        int max = maxSalary(arr);
+        int max = maxSalary(newEmployee);
         System.out.println("Максимальная зарплата: " + max);
 
-        int min = minSalary(arr);
+        int min = minSalary(newEmployee);
         System.out.println("Минимальная зарплата: " + min);
 
-        int average = averageSalary(arr);
+        int average = averageSalary(newEmployee);
         System.out.println("Средняя зарплата: " + average);
 
         String[] list = new String[newEmployee.length];
